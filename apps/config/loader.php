@@ -12,3 +12,8 @@ $loader = new \Phalcon\Loader();
 // APP_PATH . $config->application->formsDir
 // ))->register();
 
+$loader->registerDirs(array(
+	APP_PATH . "apps/library/" 
+));
+// register autoloader
+$loader->register();

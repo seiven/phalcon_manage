@@ -25,7 +25,6 @@ class Module {
      * 注册自定义服务
      */
 	public function registerServices($di){
-		require_once APP_PATH . 'apps/library/SmartyEngine.php';
 		// Registering a dispatcher
 		$di->set('dispatcher', function (){
 			$dispatcher = new Dispatcher();
