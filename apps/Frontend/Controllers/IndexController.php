@@ -4,10 +4,8 @@ namespace Frontend\Controllers;
 
 class IndexController extends BaseController {
 	public $layout = 'main';
-	public function initialize(){
+	function initialize(){
 		parent::initialize();
 	}
-	public function indexAction(){
-		
-	}
+	public function indexAction(){}
 }
