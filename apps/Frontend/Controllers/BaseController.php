@@ -1,5 +1,9 @@
 <?php
+
+namespace Frontend\Controllers;
+
 use Phalcon\Mvc\Controller;
+
 class BaseController extends Controller {
 	public $layout = 'main';
 	protected function initialize(){

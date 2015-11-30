@@ -25,7 +25,7 @@ $di->set('dispatcher', function () use($di){
 	
 	return $dispatcher;
 });
-$di->set('router', function (){
+$di->set('router', function () {
 	return require __DIR__ . '/routes.php';
 });
 /**
@@ -35,20 +35,6 @@ $di->set('url', function () use($config){
 	$url = new UrlProvider();
 	$url->setBaseUri($config->application->baseUri);
 	return $url;
-});
-
-$di->set('view', function () use($config){
-	
-	$view = new View();
-	
-	$view->setViewsDir(APP_PATH . $config->application->viewsDir);
-	
-	$view->registerEngines(array(
-		
-		".html"=> 'SmartyEngine' 
-	));
-	
-	return $view;
 });
 /**
  * Database connection is created based in the parameters defined in the configuration file
@@ -77,19 +63,6 @@ $di->set('session', function (){
 	$session->start();
 	return $session;
 });
-
-/**
- * Register the flash service with custom CSS classes
- */
-$di->set('flash', function (){
-	return new FlashSession(array(
-		'error'=> 'alert alert-danger',
-		'success'=> 'alert alert-success',
-		'notice'=> 'alert alert-info',
-		'warning'=> 'alert alert-warning' 
-	));
-});
-
 /**
  * Register a user component
  */

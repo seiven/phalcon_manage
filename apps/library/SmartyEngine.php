@@ -1,5 +1,5 @@
 <?php
-include_once APP_PATH . '/app/library/Smarty/Smarty.class.php';
+include_once __DIR__ . '/Smarty/Smarty.class.php';
 class SmartyEngine extends \Phalcon\Mvc\View\Engine implements Phalcon\Mvc\View\EngineInterface {
 	protected $_smarty;
 	protected $_params;

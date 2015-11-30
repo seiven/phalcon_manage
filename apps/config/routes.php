@@ -3,7 +3,7 @@ use Phalcon\Mvc\Router;
 
 // Create the router
 $router = new Router();
-
+$router->setDefaultModule("Frontend");
 // Define a route
 $router->add(':controller/:action/:params', array(
 	'controller'=> 1,
