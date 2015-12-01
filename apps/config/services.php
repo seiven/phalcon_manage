@@ -29,13 +29,6 @@ $di->set('db', function () use($config){
 });
 
 /**
- * If the configuration specify the use of metadata adapter use it or use memory otherwise
- */
-$di->set('modelsMetadata', function (){
-	return new MetaData();
-});
-
-/**
  * Start the session the first time some component request the session service
  */
 $di->set('session', function (){
@@ -48,4 +41,8 @@ $di->set('session', function (){
  */
 $di->set('elements', function (){
 	return new Elements();
+});
+// 配置
+$di->set('config', function () use($config){
+	return $config;
 });

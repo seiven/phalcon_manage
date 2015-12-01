@@ -14,7 +14,8 @@ class SmartyEngine extends \Phalcon\Mvc\View\Engine implements Phalcon\Mvc\View\
 		$this->_smarty->left_delimiter = '<{';
 		$this->_smarty->right_delimiter = '}>';
 		$this->_smarty->cache_lifetime = 100;
-		
+		// 注册函数和方法
+		$this->redisterPlugin();
 		parent::__construct($view, $di);
 	}
 	public function render($path, $params, $mustClean = NULL){
@@ -22,7 +23,10 @@ class SmartyEngine extends \Phalcon\Mvc\View\Engine implements Phalcon\Mvc\View\
 		foreach($params as $key => $value){
 			$this->_smarty->assign($key, $value);
 		}
-		echo $path;
+		//echo $path;
 		$this->_view->setContent($this->_smarty->fetch($path));
+	}
+	private function redisterPlugin(){
+		$this->_smarty->registerPlugin('function', 'url', array('smartyFunctions','createUrl'));
 	}
 }
