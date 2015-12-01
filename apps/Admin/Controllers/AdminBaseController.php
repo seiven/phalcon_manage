@@ -11,7 +11,7 @@ class AdminBaseController extends Controller {
 		// load layout
 		$this->view->setTemplateAfter($this->layout);
 		// load line userinfo
-		$adminUser = $this->session->get('adminuser');
+		$adminUser = $this->session->get('adminAuth');
 		if($adminUser) $this->_user = $adminUser;
 		// check user login
 		$this->isLogin();
@@ -47,7 +47,7 @@ class AdminBaseController extends Controller {
 	protected function isLogin(){
 		if(is_null($this->_user) && $this->dispatcher->getControllerName() != 'Login'){
 			// no login
-			//$this->response->redirect('/Admin/Login');
+			$this->response->redirect('/Admin/Login');
 		}
 	}
 	/**

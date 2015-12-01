@@ -46,10 +46,28 @@ $di->set('AdminMenus', function (){
 $di->set('view', function (){
 	$view = new View();
 	$view->registerEngines(array(
-		".html"=> 'Phalcon\Mvc\View\Engine\Volt' 
+		".html"=> 'volt' 
 	));
 	return $view;
 });
+
+/**
+ * Setting up volt
+ */
+$di->set('volt', function ($view, $di){
+	$volt = new VoltEngine($view, $di);
+	$volt->setOptions(array(
+		"compiledPath"=> function ($templatePath){
+			$dirName = str_replace('\\', '_', str_replace('/', '_', dirname(trim($templatePath, APP_PATH))));
+			$cachePath = PUBLIC_PATH . '/__runtime/volt';
+			return $cachePath . '/' . $dirName . '_' . basename($templatePath) . '.php';
+		} 
+	));
+	// register function
+	$compiler = $volt->getCompiler();
+	$compiler->addFunction('is_a', 'is_a');
+	return $volt;
+}, true);
 // 配置
 $di->set('config', function () use($config){
 	return $config;
