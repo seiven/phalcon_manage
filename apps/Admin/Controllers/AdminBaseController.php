@@ -47,7 +47,7 @@ class AdminBaseController extends Controller {
 	protected function isLogin(){
 		if(is_null($this->_user) && $this->dispatcher->getControllerName() != 'Login'){
 			// no login
-			$this->response->redirect('/Admin/Login');
+			//$this->response->redirect('/Admin/Login');
 		}
 	}
 	/**

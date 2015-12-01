@@ -5,72 +5,72 @@
 <title>back manage system</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- basic styles -->
-<link href="<{$staticUrl}>/static/admin/ace/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/font-awesome.min.css" />
+<link href="{{staticUrl}}/static/admin/ace/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{staticUrl}}/static/admin/ace/css/font-awesome.min.css" />
 <!--[if IE 7]>
-		  <link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="{{staticUrl}}/static/admin/ace/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 <!-- page specific plugin styles -->
-<link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/chosen.css" />
+<link rel="stylesheet" href="{{staticUrl}}/static/admin/ace/css/chosen.css" />
 <!-- fonts -->
 <link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300" />
 <!-- ace styles -->
-<link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/daterangepicker.css" />
-<link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/ace.min.css" />
-<link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/ace-rtl.min.css" />
-<link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/ace-skins.min.css" />
-<link rel="stylesheet" href="<{$staticUrl}>/static/css/commond.css" />
+<link rel="stylesheet" href="{{staticUrl}}/static/admin/ace/css/daterangepicker.css" />
+<link rel="stylesheet" href="{{staticUrl}}/static/admin/ace/css/ace.min.css" />
+<link rel="stylesheet" href="{{staticUrl}}/static/admin/ace/css/ace-rtl.min.css" />
+<link rel="stylesheet" href="{{staticUrl}}/static/admin/ace/css/ace-skins.min.css" />
+<link rel="stylesheet" href="{{staticUrl}}/static/css/commond.css" />
 <!--[if lte IE 8]>
-		  <link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="{{staticUrl}}/static/admin/ace/css/ace-ie.min.css" />
 		<![endif]-->
 <!-- inline styles related to this page -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
-		<script src="<{$staticUrl}>/static/admin/ace/js/html5shiv.js"></script>
-		<script src="<{$staticUrl}>/static/admin/ace/js/respond.min.js"></script>
+		<script src="{{staticUrl}}/static/admin/ace/js/html5shiv.js"></script>
+		<script src="{{staticUrl}}/static/admin/ace/js/respond.min.js"></script>
 		<![endif]-->
 <!-- basic scripts -->
 <!--[if IE]-->
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery-1.10.2.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/jquery-1.10.2.min.js"></script>
 <!--[endif]-->
 <!--[if !IE]> -->
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery-2.0.3.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/jquery-2.0.3.min.js"></script>
 <!-- <![endif]-->
-<script src="<{$staticUrl}>/static/admin/ace/js/chosen.jquery.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/chosen.jquery.min.js"></script>
 <script type="text/javascript">
-	if("ontouchend" in document) document.write("<script src='<{$staticUrl}>/static/admin/ace/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+	if("ontouchend" in document) document.write("<script src='{{staticUrl}}/static/admin/ace/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 </script>
-<script src="<{$staticUrl}>/static/admin/ace/js/bootstrap.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/typeahead-bs2.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/bootstrap.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/typeahead-bs2.min.js"></script>
 <!-- page specific plugin scripts -->
 <!--[if lte IE 8]>
-		  <script src="<{$staticUrl}>/static/admin/ace/js/excanvas.min.js"></script>
+		  <script src="{{staticUrl}}/static/admin/ace/js/excanvas.min.js"></script>
 		<![endif]-->
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery.slimscroll.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery.easy-pie-chart.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery.sparkline.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/flot/jquery.flot.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/flot/jquery.flot.pie.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/flot/jquery.flot.resize.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/fuelux/fuelux.wizard.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery.validate.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery.inputlimiter.1.3.1.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-<link rel="stylesheet" href="<{$staticUrl}>/static/admin/js/datetimepicker/css/bootstrap-datetimepicker.min.css" />
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery.autosize.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/jquery.ui.touch-punch.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/jquery.slimscroll.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/jquery.easy-pie-chart.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/jquery.sparkline.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/flot/jquery.flot.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/flot/jquery.flot.pie.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/flot/jquery.flot.resize.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/fuelux/fuelux.wizard.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/jquery.validate.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/jquery.inputlimiter.1.3.1.min.js"></script>
+<script src="{{staticUrl}}/static/admin/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="{{staticUrl}}/static/admin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<link rel="stylesheet" href="{{staticUrl}}/static/admin/js/datetimepicker/css/bootstrap-datetimepicker.min.css" />
+<script src="{{staticUrl}}/static/admin/ace/js/jquery.autosize.min.js"></script>
 <!-- ace settings handler -->
-<script src="<{$staticUrl}>/static/admin/ace/js/ace-extra.min.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/ace.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/ace-extra.min.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/ace.min.js"></script>
 <!-- ace scripts -->
-<script src="<{$staticUrl}>/static/admin/ace/js/ace-elements.min.js"></script>
-<script src="<{$staticUrl}>/static/js/commond.js"></script>
-<script src="<{$staticUrl}>/static/admin/ace/js/bootbox.min.js"></script>
-<link rel="stylesheet"  href="<{$staticUrl}>/static/kindeditor/themes/default/default.css" />
-<script src="<{$staticUrl}>/static/kindeditor/kindeditor-min.js"></script>
-<script src="<{$staticUrl}>/static/kindeditor/lang/zh_CN.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/ace-elements.min.js"></script>
+<script src="{{staticUrl}}/static/js/commond.js"></script>
+<script src="{{staticUrl}}/static/admin/ace/js/bootbox.min.js"></script>
+<link rel="stylesheet"  href="{{staticUrl}}/static/kindeditor/themes/default/default.css" />
+<script src="{{staticUrl}}/static/kindeditor/kindeditor-min.js"></script>
+<script src="{{staticUrl}}/static/kindeditor/lang/zh_CN.js"></script>
 <style type="text/css">
 .col-sm-3 {
 	width:23%
@@ -88,7 +88,7 @@
 <div class="navbar navbar-default" id="navbar"> 
   <script type="text/javascript">try{ace.settings.check('navbar' , 'fixed')}catch(e){}</script>
   <div class="navbar-container" id="navbar-container">
-    <div class="navbar-header pull-left"> <a href="#" class="navbar-brand"> <small> <i class="icon-leaf"></i> <{$siteName}></small> </a> 
+    <div class="navbar-header pull-left"> <a href="#" class="navbar-brand"> <small> <i class="icon-leaf"></i> {{siteName}}</small> </a> 
       <!-- /.brand --> 
     </div>
     <!-- /.navbar-header -->
@@ -113,15 +113,15 @@
         <li class="green"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="icon-envelope icon-animated-vertical"></i> <span class="badge badge-success">5</span> </a>
           <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
             <li class="dropdown-header"> <i class="icon-envelope-alt"></i> 5条消息 </li>
-            <li> <a href="#"> <img src="<{$staticUrl}>/static/admin/ace/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" /> <span class="msg-body"> <span class="msg-title"> <span class="blue">Alex:</span> 不知道写啥 ... </span> <span class="msg-time"> <i class="icon-time"></i> <span>1分钟以前</span> </span> </span> </a> </li>
-            <li> <a href="#"> <img src="<{$staticUrl}>/static/admin/ace/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" /> <span class="msg-body"> <span class="msg-title"> <span class="blue">Susan:</span> 不知道翻译... </span> <span class="msg-time"> <i class="icon-time"></i> <span>20分钟以前</span> </span> </span> </a> </li>
-            <li> <a href="#"> <img src="<{$staticUrl}>/static/admin/ace/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" /> <span class="msg-body"> <span class="msg-title"> <span class="blue">Bob:</span> 到底是不是英文 ... </span> <span class="msg-time"> <i class="icon-time"></i> <span>下午3:15</span> </span> </span> </a> </li>
+            <li> <a href="#"> <img src="{{staticUrl}}/static/admin/ace/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" /> <span class="msg-body"> <span class="msg-title"> <span class="blue">Alex:</span> 不知道写啥 ... </span> <span class="msg-time"> <i class="icon-time"></i> <span>1分钟以前</span> </span> </span> </a> </li>
+            <li> <a href="#"> <img src="{{staticUrl}}/static/admin/ace/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" /> <span class="msg-body"> <span class="msg-title"> <span class="blue">Susan:</span> 不知道翻译... </span> <span class="msg-time"> <i class="icon-time"></i> <span>20分钟以前</span> </span> </span> </a> </li>
+            <li> <a href="#"> <img src="{{staticUrl}}/static/admin/ace/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" /> <span class="msg-body"> <span class="msg-title"> <span class="blue">Bob:</span> 到底是不是英文 ... </span> <span class="msg-time"> <i class="icon-time"></i> <span>下午3:15</span> </span> </span> </a> </li>
             <li> <a href="inbox.html"> 查看所有消息 <i class="icon-arrow-right"></i> </a> </li>
           </ul>
         </li>
-        <li class="light-blue"> <a data-toggle="dropdown" href="#" class="dropdown-toggle"> <img class="nav-user-photo" src="<{$staticUrl}>/static/admin/ace/avatars/user.jpg" alt="<{$smarty.session.user.username}>" /> <span class="user-info"> <small>欢迎光临,</small> <{$smarty.session.user.username}> </span> <i class="icon-caret-down"></i> </a>
+        <li class="light-blue"> <a data-toggle="dropdown" href="#" class="dropdown-toggle"> <img class="nav-user-photo" src="{{staticUrl}}/static/admin/ace/avatars/user.jpg" alt="" /> <span class="user-info"> <small>欢迎光临,</small> Seiven </span> <i class="icon-caret-down"></i> </a>
           <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-            <li> <a class="open_dialog" data-type="form" data-title="修改密码" data-url="<{url c=adminRole a=changePassword}>" > <i class="icon-cog"></i> 设置密码 </a> </li>
+            <li> <a class="open_dialog" data-type="form" data-title="修改密码" data-url="{{url('Admin/User/setpwd')}}" > <i class="icon-cog"></i> 设置密码 </a> </li>
             <li class="divider"></li>
             <li> <a href="<{url c=base a=logout}>"> <i class="icon-off"></i> 退出 </a> </li>
           </ul>
@@ -141,19 +141,20 @@
       <!-- #sidebar-shortcuts -->
       <ul class="nav nav-list">
         <li id="admin_index"> <a href="<{url c=admin a=index}>"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li>
-        <{foreach from=$userdata.menu key=top_menu_name item=topmenu}>
-        <{if is_array($topmenu.list)}>
-        <li> <a href="#" class="dropdown-toggle"> <i class="<{$topmenu.icon}>"></i> <span class="menu-text"><{$top_menu_name}></span> <b class="arrow icon-angle-down"></b> </a>
+        {% set adminMenus = AdminMenus.getAll() %}
+        {% for top_menu_name,topmenu in adminMenus %}
+        {% if topmenu.list is array %}
+        <li> <a href="#" class="dropdown-toggle"> <i class="{{topmenu['icon']}}"></i> <span class="menu-text">{{top_menu_name}}</span> <b class="arrow icon-angle-down"></b> </a>
           <ul class="submenu">
-            <{foreach from=$topmenu.list key=son_menu_name item=sonmenu}>
-            <li id="<{$sonmenu.c}>_<{$sonmenu.a}>"> <a href="<{url c=$sonmenu.c a=$sonmenu.a}>"> <i class="icon-double-angle-right"></i> <{$son_menu_name}> </a> </li>
-            <{/foreach}>
+            {% for son_menu_name,sonmenu in topmenu['list'] %}
+            <li id="{{sonmenu['c']}}_{{sonmenu['a']}}"> <a href="/Admin/{{sonmenu['c']}}/{{sonmenu['a']}}"> <i class="icon-double-angle-right"></i> {{son_menu_name}} </a> </li>
+            {%endfor%}
           </ul>
         </li>
-        <{else}>
-        <li id="<{$sonmenu.c}>_<{$sonmenu.a}>_top"> <a href=""> <i class="icon-text-width"></i> <span class="menu-text"> <{$top_menu_name}> </span> </a> </li>
-        <{/if}>
-        <{/foreach}>
+        {%else%}
+        <li> <a href=""> <i class="icon-text-width"></i> <span class="menu-text"> {{top_menu_name}} </span> </a> </li>
+        {%endif%}
+        {%endfor%}
       </ul>
       <!-- /.nav-list -->
       <div class="sidebar-collapse" id="sidebar-collapse"> <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i> </div>
@@ -170,7 +171,7 @@
         <div class="nav-search" id="nav-search"> </div>
         <!-- #nav-search --> 
       </div>
-      <div class="page-content"> <{$page_content}> </div>
+      <div class="page-content"> {{content()}} </div>
       <!-- /.page-content --> 
     </div>
     <!-- /.main-content --> 
@@ -180,7 +181,7 @@
   <!-- /.main-container-inner --> 
   <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="icon-double-angle-up icon-only bigger-110"></i> </a> </div>
 <!-- /.main-container --> 
-<script type="text/javascript">s.menu_selected('<{$controller}>','<{$action}>');</script>
+<script type="text/javascript">s.menu_selected('{{controller}}','{{action}}');</script>
 <div id="pageLoadingBox" class="hide">
   <div class="pageLoading">
     <div class="dot white"></div>

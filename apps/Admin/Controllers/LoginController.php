@@ -14,5 +14,11 @@ class LoginController extends AdminBaseController {
 	public function indexAction(){
 		// clear layout
 		$this->clearLayout();
+		if($this->request->isPost()){
+			// submit login
+			$username = $this->request->getPost('username', 'trim');
+			$password = $this->request->getPost('password', 'trim');
+			$isremember = $this->request->getPost('isremember', 'trim');
+		}
 	}
 }

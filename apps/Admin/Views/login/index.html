@@ -5,29 +5,29 @@
 <title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- basic styles -->
-<link href="<{$staticUrl}>/static/admin/ace/css/bootstrap.min.css"
+<link href="{{staticUrl}}/static/admin/ace/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
-	href="<{$staticUrl}>/static/admin/ace/css/font-awesome.min.css" />
+	href="{{ staticUrl }}/static/admin/ace/css/font-awesome.min.css" />
 <!--[if IE 7]>
-		  <link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="{{ staticUrl }}/static/admin/ace/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 <!-- page specific plugin styles -->
 <!-- fonts -->
 <link rel="stylesheet"
 	href="http://fonts.useso.com//css?family=Open+Sans:400,300" />
 <!-- ace styles -->
-<link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/ace.min.css" />
+<link rel="stylesheet" href="{{ staticUrl }}/static/admin/ace/css/ace.min.css" />
 <link rel="stylesheet"
-	href="<{$staticUrl}>/static/admin/ace/css/ace-rtl.min.css" />
+	href="{{ staticUrl }}/static/admin/ace/css/ace-rtl.min.css" />
 <!--[if lte IE 8]>
-		  <link rel="stylesheet" href="<{$staticUrl}>/static/admin/ace/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="{{ staticUrl }}/static/admin/ace/css/ace-ie.min.css" />
 		<![endif]-->
 <!-- inline styles related to this page -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
-		<script src="<{$staticUrl}>/static/admin/ace/js/html5shiv.js"></script>
-		<script src="<{$staticUrl}>/static/admin/ace/js/respond.min.js"></script>
+		<script src="{{ staticUrl }}/static/admin/ace/js/html5shiv.js"></script>
+		<script src="{{ staticUrl }}/static/admin/ace/js/respond.min.js"></script>
 		<![endif]-->
 </head>
 <body class="login-layout">
@@ -37,7 +37,7 @@
       <div class="col-sm-10 col-sm-offset-1">
         <div class="login-container">
           <div class="center">
-            <h1> <span class="white"><{$siteName}></span> </h1>
+            <h1> <span class="white">{{siteName }}</span> </h1>
           </div>
           <div class="space-6"></div>
           <div class="position-relative">
@@ -46,14 +46,8 @@
               <div class="widget-body">
                 <div class="widget-main">
                   <h4 class="header blue lighter bigger"> <i class="icon-coffee green"></i> 请输入您的账户密码信息 </h4>
-                  <div class="space-6"></div>
-                  <{if $userLoginStatus }>
-                  <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert"> <i class="icon-remove"></i> </button>
-                    <strong> <i class="icon-remove"></i> oh~ </strong> <{$userLoginStatus.message}> <br>
-                  </div>
-                  <{/if}>
-                  <form method="post" action="<{url uri='/Admin/Login/index'}>">
+                  <div class="space-6"></div> 
+                  <form method="post" action="{{url('/Admin/login')}}">
                     <fieldset>
                       <label class="block clearfix"> <span
 													class="block input-icon input-icon-right">
@@ -71,7 +65,7 @@
                       <div class="clearfix">
                         <label class="inline">
                           <input type="checkbox"
-														class="ace" name="isremember" />
+													value='1'	class="ace" name="isremember" />
                           <span class="lbl"> 记住我</span> </label>
                         <button type="button submit"
 														class="width-35 pull-right btn btn-sm btn-primary"> <i class="icon-key"></i> 登录 </button>
@@ -97,12 +91,12 @@
 <!-- /.main-container --> 
 <!-- basic scripts --> 
 <!--[if !IE]> -->
-	<script src="<{$staticUrl}>/static/admin/ace/js/jquery-2.0.3.min.js"></script>
+	<script src="{{ staticUrl }}/static/admin/ace/js/jquery-2.0.3.min.js"></script>
 	<!-- <![endif]--> 
 <!--[if IE]--> 
-<script src="<{$staticUrl}>/static/admin/ace/js/jquery-1.10.2.min.js"></script> 
+<script src="{{ staticUrl }}/static/admin/ace/js/jquery-1.10.2.min.js"></script> 
 <!-- [endif]--> 
-<script type="text/javascript">if ("ontouchend" in document) document.write("<script src='<{$staticUrl}>/static/admin/ace/js/jquery.mobile.custom.min.js'>"+ "<"+"/script>");</script> 
+<script type="text/javascript">if ("ontouchend" in document) document.write("<script src='{{ staticUrl }}/static/admin/ace/js/jquery.mobile.custom.min.js'>"+ "<"+"/script>");</script> 
 <!-- inline scripts related to this page --> 
 <script type="text/javascript">
 function show_box(id) {

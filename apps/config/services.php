@@ -39,8 +39,16 @@ $di->set('session', function (){
 /**
  * Register a user component
  */
-$di->set('elements', function (){
-	return new Elements();
+$di->set('AdminMenus', function (){
+	return new AdminMenus();
+});
+
+$di->set('view', function (){
+	$view = new View();
+	$view->registerEngines(array(
+		".html"=> 'Phalcon\Mvc\View\Engine\Volt' 
+	));
+	return $view;
 });
 // 配置
 $di->set('config', function () use($config){

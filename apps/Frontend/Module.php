@@ -27,20 +27,12 @@ class Module {
      */
 	public function registerServices($di){
 		// Registering a dispatcher
-		$di->set('dispatcher', function (){
-			$dispatcher = new Dispatcher();
-			$dispatcher->setDefaultNamespace("Frontend\Controllers");
-			return $dispatcher;
-		});
-		
+		$dispatcher = $di->get('dispatcher');
+		$dispatcher->setDefaultNamespace("Frontend\Controllers");
+		$di->set('dispatcher', $dispatcher);
 		// Registering the view component
-		$di->set('view', function (){
-			$view = new View();
-			$view->setViewsDir(__DIR__ . '/Views/');
-			$view->registerEngines(array(
-				".html"=> 'SmartyEngine' 
-			));
-			return $view;
-		});
+		$view = $di->get('view');
+		$view->setViewsDir(__DIR__ . '/Views/');
+		$di->set('view', $view);
 	}
 }

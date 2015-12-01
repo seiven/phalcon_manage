@@ -21,11 +21,7 @@ $di = new FactoryDefault();
  * We register the events manager
 */
 $di->set('dispatcher', function () use($di){
-	
-	$eventsManager = new EventsManager();
 	$dispatcher = new Dispatcher();
-	$dispatcher->setEventsManager($eventsManager);
-	
 	return $dispatcher;
 });
 /**
