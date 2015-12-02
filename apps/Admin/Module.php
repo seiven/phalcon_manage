@@ -9,8 +9,8 @@ use Phalcon\Mvc\Dispatcher;
 
 class Module {
 	/**
-     * 注册自定义加载器
-     */
+	 * 注册自定义加载器
+	 */
 	public function registerAutoloaders($di){
 		$loader = new Loader();
 		$loader->registerNamespaces(array(
@@ -22,8 +22,8 @@ class Module {
 	}
 	
 	/**
-     * 注册自定义服务
-     */
+	 * 注册自定义服务
+	 */
 	public function registerServices($di){
 		// Registering a dispatcher
 		$dispatcher = $di->get('dispatcher');
@@ -33,5 +33,9 @@ class Module {
 		$view = $di->get('view');
 		$view->setViewsDir(__DIR__ . '/Views/');
 		$di->set('view', $view);
+		// register menu
+		$di->set('AdminMenus', function (){
+			return require __DIR__ . '/Config/menus.php';
+		});
 	}
 }

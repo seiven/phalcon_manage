@@ -19,7 +19,7 @@ $di = new FactoryDefault();
 
 /**
  * We register the events manager
-*/
+ */
 $di->set('dispatcher', function () use($di){
 	$dispatcher = new Dispatcher();
 	return $dispatcher;
@@ -37,16 +37,16 @@ require __DIR__ . '/config/services.php';
 $application = new Application($di);
 
 // register moudles
-$application->registerModules(array(
-	'Frontend'=> array(
-		'className'=> 'Frontend\Module',
-		'path'=> __DIR__ . '/Frontend/Module.php' 
-	),
-	'Admin'=> array(
-		'className'=> 'Admin\Module',
-		'path'=> __DIR__ . '/Admin/Module.php' 
-	) 
-));
+$application->registerModules(function () use($application){
+	$modules = require __DIR__ . '/config/modules.php';
+	foreach($modules as $m){
+		$_modules[$m] = array(
+			'className'=> "{$m}\Module",
+			'path'=> __DIR__ . "/{$m}/Module.php" 
+		);
+	}
+	$application->registerModules($_modules);
+});
 // router
 $di->set('router', function () use($application){
 	return require __DIR__ . '/config/routes.php';

@@ -35,13 +35,7 @@ $di->set('session', function (){
 	$session = new SessionAdapter();
 	$session->start();
 	return $session;
-});
-/**
- * Register a user component
- */
-$di->set('AdminMenus', function (){
-	return new AdminMenus();
-});
+}); 
 
 $di->set('view', function (){
 	$view = new View();
