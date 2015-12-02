@@ -1,5 +1,6 @@
 <?php
 use Phalcon\Mvc\User\Component;
+use Phalcon\DI;
 class AdminMenus extends Component {
 	/**
 	 * 获取菜单列表
@@ -7,22 +8,19 @@ class AdminMenus extends Component {
 	public function getAll(){
 		return array(
 			'系统用户'=> array(
-				'name'=> 'adminRole',
 				'icon'=> 'icon-desktop',
+				'url'=> DI::getDefault()->get('url')->get('/Admin/index/main'),
 				'list'=> array(
 					'角色管理'=> array(
-						'c'=> 'adminRole',
-						'a'=> 'index',
+						'url'=> DI::getDefault()->get('url')->get('/Admin/Roles/index'),
 						'icon'=> '' 
 					),
 					'用户管理'=> array(
-						'c'=> 'adminRole',
-						'a'=> 'userList',
+						'url'=> DI::getDefault()->get('url')->get('/Admin/Users/index'),
 						'icon'=> '' 
 					),
 					'权限资源'=> array(
-						'c'=> 'adminRole',
-						'a'=> 'rightList',
+						'url'=> DI::getDefault()->get('url')->get('/Admin/Rights/index'),
 						'icon'=> '' 
 					) 
 				) 

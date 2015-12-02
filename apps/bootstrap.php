@@ -6,9 +6,9 @@ use Phalcon\Mvc\Dispatcher;
 /**
  * Read the configuration
  */
-$config = new ConfigIni(APP_PATH . 'apps/config/config.ini');
-if(is_readable(APP_PATH . 'apps/config/config.dev.ini')){
-	$override = new ConfigIni(APP_PATH . 'app/config/config.dev.ini');
+$config = new ConfigIni(__DIR__ . '/config/config.ini');
+if(is_readable(__DIR__ . '/config/config.dev.ini')){
+	$override = new ConfigIni(__DIR__ . '/config/config.dev.ini');
 	$config->merge($override);
 }
 
@@ -27,26 +27,27 @@ $di->set('dispatcher', function () use($di){
 /**
  * Auto-loader configuration
  */
-require APP_PATH . 'apps/config/loader.php';
+require __DIR__ . '/config/loader.php';
 
 /**
  * Load application services
  */
-require APP_PATH . 'apps/config/services.php';
+require __DIR__ . '/config/services.php';
 
 $application = new Application($di);
-// 路由
-$di->set('router', function () use($application){
-	return require __DIR__ . '/config/routes.php';
-});
-// 注册模块
+
+// register moudles
 $application->registerModules(array(
 	'Frontend'=> array(
 		'className'=> 'Frontend\Module',
-		'path'=> APP_PATH . 'apps/Frontend/Module.php' 
+		'path'=> __DIR__ . '/Frontend/Module.php' 
 	),
 	'Admin'=> array(
 		'className'=> 'Admin\Module',
-		'path'=> APP_PATH . 'apps/Admin/Module.php' 
+		'path'=> __DIR__ . '/Admin/Module.php' 
 	) 
 ));
+// router
+$di->set('router', function () use($application){
+	return require __DIR__ . '/config/routes.php';
+});

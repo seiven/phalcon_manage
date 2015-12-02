@@ -65,10 +65,10 @@ $di->set('volt', function ($view, $di){
 	));
 	// register function
 	$compiler = $volt->getCompiler();
-	$compiler->addFunction('is_a', 'is_a');
+	$compiler->addFunction('md5', 'md5');
 	return $volt;
 }, true);
-// 配置
+// set config
 $di->set('config', function () use($config){
 	return $config;
 });

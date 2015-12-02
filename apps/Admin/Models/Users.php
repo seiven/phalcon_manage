@@ -1,12 +1,23 @@
 <?php
+
 namespace Admin\Models;
+
 use Phalcon\Mvc\Model;
-class Users extends Model {
+
+class Users extends BaseModel {
+	public $tableName = 'admin_user';
+	public function getUserById(){}
+	
 	/**
-	 * set table name
-	 * @see \Phalcon\Mvc\Model::getSource()
+	 * get user by username
+	 * @param string $username
 	 */
-	public function getSource(){
-		return 'cu_admin_user';
+	static function getUserByName($username){
+		return Users::findFirst(array(
+			"username = :username: ",
+			'bind'=> array(
+				'username'=> $username 
+			) 
+		));
 	}
 }

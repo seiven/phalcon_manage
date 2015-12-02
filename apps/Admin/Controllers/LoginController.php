@@ -20,12 +20,7 @@ class LoginController extends AdminBaseController {
 			$username = $this->request->getPost('username', 'trim');
 			$password = $this->request->getPost('password', 'trim');
 			$isremember = $this->request->getPost('isremember', 'trim');
-			$user = Users::findFirst(array(
-				"username = :username: ",
-				'bind'=> array(
-					'username'=> $username 
-				) 
-			));
+			$user = Users::getUserByName($username);
 			if($user){
 				// account info ok
 				if($user->password == md5(md5($password) . $user->salt)){

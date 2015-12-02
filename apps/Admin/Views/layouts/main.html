@@ -66,11 +66,12 @@
 <script src="{{staticUrl}}/static/admin/ace/js/ace.min.js"></script>
 <!-- ace scripts -->
 <script src="{{staticUrl}}/static/admin/ace/js/ace-elements.min.js"></script>
-<script src="{{staticUrl}}/static/js/commond.js"></script>
+<script src="{{staticUrl}}/static/admin/js/commond.js"></script>
+<script src="{{staticUrl}}/static/admin/js/uuid.js"></script>
 <script src="{{staticUrl}}/static/admin/ace/js/bootbox.min.js"></script>
-<link rel="stylesheet"  href="{{staticUrl}}/static/kindeditor/themes/default/default.css" />
-<script src="{{staticUrl}}/static/kindeditor/kindeditor-min.js"></script>
-<script src="{{staticUrl}}/static/kindeditor/lang/zh_CN.js"></script>
+<link rel="stylesheet"  href="{{staticUrl}}/static/admin/kindeditor/themes/default/default.css" />
+<script src="{{staticUrl}}/static/admin/kindeditor/kindeditor-min.js"></script>
+<script src="{{staticUrl}}/static/admin/kindeditor/lang/zh_CN.js"></script>
 <style type="text/css">
 .col-sm-3 {
 	width:23%
@@ -140,19 +141,19 @@
       <script type="text/javascript">try{ace.settings.check('sidebar' , 'fixed')}catch(e){}</script> 
       <!-- #sidebar-shortcuts -->
       <ul class="nav nav-list">
-        <li id="admin_index"> <a href="<{url c=admin a=index}>"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li>
+        <li id="admin_index"> <a href="#"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li>
         {% set adminMenus = AdminMenus.getAll() %}
         {% for top_menu_name,topmenu in adminMenus %}
         {% if topmenu.list is array %}
         <li> <a href="#" class="dropdown-toggle"> <i class="{{topmenu['icon']}}"></i> <span class="menu-text">{{top_menu_name}}</span> <b class="arrow icon-angle-down"></b> </a>
           <ul class="submenu">
             {% for son_menu_name,sonmenu in topmenu['list'] %}
-            <li id="{{sonmenu['c']}}_{{sonmenu['a']}}"> <a href="/Admin/{{sonmenu['c']}}/{{sonmenu['a']}}"> <i class="icon-double-angle-right"></i> {{son_menu_name}} </a> </li>
+            <li> <a href="#" data-url="{{sonmenu['url']}}" data-pageid="{{md5(sonmenu['url'])}}" data-navname="{{son_menu_name}}" class="page_btn"> <i class="icon-double-angle-right"></i> {{son_menu_name}} </a> </li>
             {%endfor%}
           </ul>
         </li>
         {%else%}
-        <li> <a href=""> <i class="icon-text-width"></i> <span class="menu-text"> {{top_menu_name}} </span> </a> </li>
+        <li> <a href="#" data-url="{{topmenu['url']}}" data-pageid="{{md5(sonmenu['url'])}}" data-navname="{{top_menu_name}}"  class="page_btn"> <i class="icon-text-width"></i> <span class="menu-text"> {{top_menu_name}} </span> </a> </li>
         {%endif%}
         {%endfor%}
       </ul>
@@ -161,17 +162,17 @@
       <script type="text/javascript">try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}</script> 
     </div>
     <div class="main-content">
-      <div class="breadcrumbs" id="breadcrumbs"> 
-        <script type="text/javascript">try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}</script>
-        <ul class="breadcrumb">
-          <li> <i class="icon-home home-icon"></i> <a href="#">首页</a> </li>
-          <li class="active">控制台</li>
-        </ul>
-        <!-- .breadcrumb -->
-        <div class="nav-search" id="nav-search"> </div>
-        <!-- #nav-search --> 
+      <div class="breadcrumbs" id="breadcrumbs" style="height:40px;padding-top:6px;">
+      	<ul class="nav nav-tabs padding-18 tab-size-bigger" id="pageNavs" style="height:34px;">
+        <li class="active"><a data-toggle="tab" href="#mainIndex"> 首页 </a></li>
+      </ul>
+      </div> 
+      <div class="page-content tab-content no-border">
+        <div class="main_target tab-pane fade in active" id="mainIndex">{{content()}}
+        	
+        </div>
+        <div style="position:absolute; right:20px; top:0"><a href="#" class="btn btn-danger btn-xs pageIdClose">关闭页面</a></div>
       </div>
-      <div class="page-content"> {{content()}} </div>
       <!-- /.page-content --> 
     </div>
     <!-- /.main-content --> 
@@ -181,16 +182,16 @@
   <!-- /.main-container-inner --> 
   <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"> <i class="icon-double-angle-up icon-only bigger-110"></i> </a> </div>
 <!-- /.main-container --> 
-<script type="text/javascript">s.menu_selected('{{controller}}','{{action}}');</script>
-<div id="pageLoadingBox" class="hide">
-  <div class="pageLoading">
-    <div class="dot white"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
+<script type="text/javascript">
+s.menu_selected('{{controller}}','{{action}}');
+$(function(){
+})
+</script>
+<div id="screen" style="position:absolute; z-index:9999; top:0px; left:0px; display:none" class="1hide">
+  <div id="screen_back" style="filter:alpha(opacity=50); -moz-opacity:0.5; opacity:0.5; background-color:#FFF; width:100%; height:100%"></div>
+  <div id="load_html_box" style="background-color:#333; color:#FFF; font-size:30px; width:250px; height:100px; text-align:center; line-height:100px;position:absolute; z-index:99999; font-family:'微软雅黑';border-radius: 5px;">
+    <div>加载中...</div>
   </div>
-  <div class="pageLoadingTitle">别动,等我执行完...</div>
 </div>
 </body>
 </html>

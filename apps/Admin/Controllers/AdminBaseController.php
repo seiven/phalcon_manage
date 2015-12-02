@@ -9,7 +9,6 @@ class AdminBaseController extends Controller {
 	public $_user = null;
 	protected function initialize(){
 		// load layout
-		$this->view->setTemplateAfter($this->layout);
 		// load line userinfo
 		$adminUser = $this->session->get('adminAuth');
 		if($adminUser) $this->_user = $adminUser;

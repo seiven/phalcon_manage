@@ -193,11 +193,78 @@ var s = {
 		// 日期选择器
 		$('.date-picker').datetimepicker({language:  'zh-CN',autoclose: 1,startDate: "2015-02-14 10:00"});
 	},
-	openLoading:function(){
-		$('#pageLoadingBox').show();
+	create_load:function(){
+		$('#screen').width($(document).width());
+		$('#screen').height($(document).height());
+		$('#load_html_box').css({
+			top: $(document).height() / 2  - 90,
+			left: $(document).width() / 2 - 120
+		});
+		$('#screen').show();
 	},
-	closeLoading:function(){
-		$('#pageLoadingBox').hide();
+	close_load:function(){
+		$('#screen').hide();
+	},
+	initPageBind:function(){
+			// ajax 获取网页
+		$('.page_btn').on('click',function(){
+			var t = $(this);
+			var url = t.data('url');
+			var target = t.data('target') | '.main_target';
+			// load html
+			$.ajax({
+				url: url,
+				context: $('.page-content'),
+				data:{},
+				dataType: 'html',
+				error:function(data,e){
+					console.log('有错误'+e)	
+					s.close_load();	
+				},
+				success:function(data){
+					// 查询之前是否含有
+					//$('.main_target').hide();
+					if($('#'+t.data('pageid')).length > 0){
+						// 存在	
+						var html = $('#'+t.data('pageid'));
+						$(html).attr('id',t.data('pageid'));
+						$(html).html(data)
+					}else{
+						// 不存在
+						// 添加导航
+						$('<li> <a data-toggle="tab" href="#'+ t.data('pageid') +'"> '+ t.data('navname') +' </a></li>').appendTo($('#pageNavs'));
+						// 让其他的隐藏
+						var html = $('<div class="main_target tab-pane"></div>')
+						$(html).attr('id',t.data('pageid'));
+						$(html).html(data)
+						$(html).appendTo(this)
+					}
+					s.close_load();	
+				},
+				beforeSend:function(){
+					s.create_load();	
+				}
+			});
+			// create html 
+			return false;
+		});
+		// 关闭页面
+		$('.pageIdClose').on('click',function(){
+			$('#pageNavs a').each(function(){
+				var isactive = $(this).parent().hasClass('active')
+				var delEle =  $(this).attr('href');
+				if(delEle == '#mainIndex' && isactive == true) return false;
+				if(isactive == true) {
+					// 删除页面
+					$(delEle).remove();
+					$(this).parent().remove();
+					// 选中第一个
+					$('#pageNavs li').eq(0).addClass('active');
+					$('#mainIndex').addClass('active');
+					$('#mainIndex').removeClass('fade');
+				}
+			})
+		})
 	}
 }
 
@@ -216,4 +283,5 @@ $(function() {
 		return s.submit($(this));
 	})
 	// select或控件事件变化
+	s.initPageBind();
 })
