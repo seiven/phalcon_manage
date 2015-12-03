@@ -3,7 +3,7 @@
 /**
  * admin user
  */
-namespace Admin\Controllers;
+namespace Application\Admin\Controllers;
 
 use Admin\Models\Users;
 use Phalcon\Paginator\Adapter\Model;

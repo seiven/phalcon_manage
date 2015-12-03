@@ -142,8 +142,8 @@
       <!-- #sidebar-shortcuts -->
       <ul class="nav nav-list">
         <li id="admin_index"> <a href="#"> <i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span> </a> </li>
-        {% set adminMenus = AdminMenus.getAll() %}
-        {% for top_menu_name,topmenu in adminMenus %}
+
+        {% for top_menu_name,topmenu in AdminMenus %}
         {% if topmenu.list is array %}
         <li> <a href="#" class="dropdown-toggle"> <i class="{{topmenu['icon']}}"></i> <span class="menu-text">{{top_menu_name}}</span> <b class="arrow icon-angle-down"></b> </a>
           <ul class="submenu">

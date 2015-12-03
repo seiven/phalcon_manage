@@ -1,6 +1,6 @@
 <?php
 
-namespace Frontend;
+namespace Application\Frontend;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
@@ -15,8 +15,8 @@ class Module {
 		$loader = new Loader();
 		
 		$loader->registerNamespaces(array(
-			'Frontend\Controllers'=> __DIR__ . '/Controllers/',
-			'Frontend\Models'=> __DIR__ . '/Models/' 
+			'Application\Frontend\Controllers'=> __DIR__ . '/Controllers/',
+			'Application\Frontend\Models'=> __DIR__ . '/Models/' 
 		));
 		
 		$loader->register();
@@ -28,7 +28,7 @@ class Module {
 	public function registerServices($di){
 		// Registering a dispatcher
 		$dispatcher = $di->get('dispatcher');
-		$dispatcher->setDefaultNamespace("Frontend\Controllers");
+		$dispatcher->setDefaultNamespace("Application\Frontend\Controllers");
 		$di->set('dispatcher', $dispatcher);
 		// Registering the view component
 		$view = $di->get('view');

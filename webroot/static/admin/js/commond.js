@@ -234,11 +234,22 @@ var s = {
 						// 添加导航
 						$('<li> <a data-toggle="tab" href="#'+ t.data('pageid') +'"> '+ t.data('navname') +' </a></li>').appendTo($('#pageNavs'));
 						// 让其他的隐藏
-						var html = $('<div class="main_target tab-pane"></div>')
+						var html = $('<div class="main_target tab-pane in"></div>')
 						$(html).attr('id',t.data('pageid'));
 						$(html).html(data)
 						$(html).appendTo(this)
 					}
+					// 隐藏所有
+					$('.main_target').removeClass('active');
+					$('#pageNavs li').removeClass('active');
+					// 显示当前
+					$('#pageNavs a').each(function(){
+						var ele =  $(this).attr('href');
+						if(ele == '#'+t.data('pageid')){
+							$(this).parent().addClass('active');
+						}
+					});
+					$('#'+t.data('pageid')).addClass('active');
 					s.close_load();	
 				},
 				beforeSend:function(){

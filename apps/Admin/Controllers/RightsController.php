@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Controllers;
+namespace Application\Admin\Controllers;
 
 class RightsController extends AdminBaseController {
 	public $layout = 'main';

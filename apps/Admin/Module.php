@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin;
+namespace Application\Admin;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
@@ -14,8 +14,8 @@ class Module {
 	public function registerAutoloaders($di){
 		$loader = new Loader();
 		$loader->registerNamespaces(array(
-			'Admin\Controllers'=> __DIR__ . '/Controllers/',
-			'Admin\Models'=> __DIR__ . '/Models/' 
+			'Application\Admin\Controllers'=> __DIR__ . '/Controllers/',
+			'Application\Admin\Models'=> __DIR__ . '/Models/' 
 		));
 		
 		$loader->register();
@@ -27,7 +27,7 @@ class Module {
 	public function registerServices($di){
 		// Registering a dispatcher
 		$dispatcher = $di->get('dispatcher');
-		$dispatcher->setDefaultNamespace("Admin\Controllers");
+		$dispatcher->setDefaultNamespace("Application\Admin\Controllers");
 		$di->set('dispatcher', $dispatcher);
 		// Registering the view component
 		$view = $di->get('view');

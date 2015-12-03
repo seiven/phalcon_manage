@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Controllers;
+namespace Application\Admin\Controllers;
 
 use Phalcon\Mvc\Controller;
 
@@ -22,6 +22,8 @@ class AdminBaseController extends Controller {
 		// load this uri controller action moudle
 		$this->assign('controller', $this->dispatcher->getControllerName());
 		$this->assign('action', $this->dispatcher->getActionName());
+		// load menus
+		$this->assign('AdminMenus', $this->di->get('AdminMenus'));
 	}
 	// set var to template
 	protected function assign($key, $value){

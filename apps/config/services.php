@@ -53,7 +53,7 @@ $di->set('volt', function ($view, $di){
 	$volt->setOptions(array(
 		"compiledPath"=> function ($templatePath){
 			$dirName = str_replace('\\', '_', str_replace('/', '_', dirname(trim($templatePath, APP_PATH))));
-			$cachePath = PUBLIC_PATH . '/__runtime/volt';
+			$cachePath = PUBLIC_PATH . '/__runtime/cache';
 			return $cachePath . '/' . $dirName . '_' . basename($templatePath) . '.php';
 		} 
 	));

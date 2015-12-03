@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Controllers;
+namespace Application\Admin\Controllers;
 
 use Phalcon\Mvc\Controller;
 use Admin\Models\Users;

@@ -6,11 +6,7 @@ use Phalcon\Mvc\Dispatcher;
 /**
  * Read the configuration
  */
-$config = new ConfigIni(__DIR__ . '/config/config.ini');
-if(is_readable(__DIR__ . '/config/config.dev.ini')){
-	$override = new ConfigIni(__DIR__ . '/config/config.dev.ini');
-	$config->merge($override);
-}
+$config = require __DIR__ . '/config/config.php';
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -37,16 +33,14 @@ require __DIR__ . '/config/services.php';
 $application = new Application($di);
 
 // register moudles
-$application->registerModules(function () use($application){
-	$modules = require __DIR__ . '/config/modules.php';
-	foreach($modules as $m){
-		$_modules[$m] = array(
-			'className'=> "{$m}\Module",
-			'path'=> __DIR__ . "/{$m}/Module.php" 
-		);
-	}
-	$application->registerModules($_modules);
-});
+$modules = require __DIR__ . '/config/modules.php';
+foreach($modules as $m){
+	$_modules[$m] = array(
+		'className'=> "Application\\{$m}\Module",
+		'path'=> __DIR__ . "/{$m}/Module.php" 
+	);
+}
+$application->registerModules($_modules);
 // router
 $di->set('router', function () use($application){
 	return require __DIR__ . '/config/routes.php';
