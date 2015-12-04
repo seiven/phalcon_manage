@@ -5,7 +5,7 @@
  */
 namespace Application\Admin\Controllers;
 
-use Admin\Models\Users;
+use Application\Admin\Models\Users;
 use Phalcon\Paginator\Adapter\Model;
 
 class UsersController extends AdminBaseController {

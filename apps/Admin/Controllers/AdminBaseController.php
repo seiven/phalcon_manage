@@ -16,6 +16,7 @@ class AdminBaseController extends Controller {
 		$this->isLogin();
 		// load auto assgin config and assgin
 		$viewAutoAssginConfig = $this->config->adminViewAutoAssgin;
+		if (!isset($viewAutoAssginConfig['staticUrl'])) $viewAutoAssginConfig['staticUrl'] = $this->config->appplication->baseUri;
 		foreach($viewAutoAssginConfig as $key => $val){
 			$this->assign($key, $val);
 		}

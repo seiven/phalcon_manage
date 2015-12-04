@@ -22,6 +22,5 @@ return new \Phalcon\Config(array(
 	),
 	'adminViewAutoAssgin'=> array(
 		'siteName'=> 'back manage',
-		'staticUrl'=> 'http://t.customer.skymoons.com/' 
 	) 
 ));
