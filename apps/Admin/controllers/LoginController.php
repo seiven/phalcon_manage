@@ -3,7 +3,7 @@
 namespace Application\Admin\Controllers;
 
 use Phalcon\Mvc\Controller;
-use Admin\Models\Users;
+use Application\Admin\Models\Users;
 
 class LoginController extends AdminBaseController {
 	protected function initialize(){
@@ -28,7 +28,6 @@ class LoginController extends AdminBaseController {
 					if($user->status == 1){
 						// allow login
 						$this->session->set('adminAuth', serialize($user));
-						
 						return $this->response->redirect('/Admin');
 					}
 				}else{

@@ -21,21 +21,20 @@ $di->set('url', function () use($config){
  */
 $di->set('db', function () use($config){
 	$config = $config->get('database')->toArray();
-	
 	$dbClass = 'Phalcon\Db\Adapter\Pdo\\' . $config['adapter'];
 	unset($config['adapter']);
-	
-	return new $dbClass($config);
+	$connection = new $dbClass($config);
+	return $connection;
 });
 
 /**
  * Start the session the first time some component request the session service
  */
-$di->set('session', function (){
+$di->setShared('session', function (){
 	$session = new SessionAdapter();
 	$session->start();
 	return $session;
-}); 
+});
 
 $di->set('view', function (){
 	$view = new View();

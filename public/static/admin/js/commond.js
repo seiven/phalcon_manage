@@ -118,22 +118,10 @@ var s = {
 			success : function(json) {
 				if (json.status == true) {
 					// 添加成功
-					if (json.message == null) {
-						if (json.redirect_url) {
-							top.window.location.href = json.redirect_url;
-						} else {
-							bootbox.hideAll();
-							location.reload();
-						}
+					if (json.redirect_url) {
+						top.window.location.href = json.redirect_url;
 					} else {
-						bootbox.alert(json.message, function(result) {
-							if (json.redirect_url) {
-								top.window.location.href = json.redirect_url;
-							} else {
-								bootbox.hideAll();
-								location.reload();
-							}
-						});
+						bootbox.hideAll(); 
 					}
 				} else {
 					// 失败
@@ -205,6 +193,21 @@ var s = {
 	close_load:function(){
 		$('#screen').hide();
 	},
+	publicInit:function(){
+		// 删除
+		$('.delete').on('click', function() {
+			// 发起ajax请求
+			s.del($(this));
+		})
+		// 打开dialog
+		$('.open_dialog').on('click', function() {
+			s.dialog($(this));
+		});
+		// 确认提交
+		$('.form_ajax').submit(function() {
+			return s.submit($(this));
+		})
+	},
 	initPageBind:function(){
 			// ajax 获取网页
 		$('.page_btn').on('click',function(){
@@ -251,6 +254,8 @@ var s = {
 					});
 					$('#'+t.data('pageid')).addClass('active');
 					s.close_load();	
+					// 重新绑定事件
+					s.publicInit();
 				},
 				beforeSend:function(){
 					s.create_load();	
@@ -280,19 +285,7 @@ var s = {
 }
 
 $(function() {
-	// 删除
-	$('.delete').on(ace.click_event, function() {
-		// 发起ajax请求
-		s.del($(this));
-	})
-	// 打开dialog
-	$('.open_dialog').on(ace.click_event, function() {
-		s.dialog($(this));
-	});
-	// 确认提交
-	$('.form_ajax').submit(function() {
-		return s.submit($(this));
-	})
+	s.publicInit();
 	// select或控件事件变化
 	s.initPageBind();
 })

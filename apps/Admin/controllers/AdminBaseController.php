@@ -16,7 +16,7 @@ class AdminBaseController extends Controller {
 		$this->isLogin();
 		// load auto assgin config and assgin
 		$viewAutoAssginConfig = $this->config->adminViewAutoAssgin;
-		if (!isset($viewAutoAssginConfig['staticUrl'])) $viewAutoAssginConfig['staticUrl'] = $this->config->appplication->baseUri;
+		if(!isset($viewAutoAssginConfig['staticUrl'])) $viewAutoAssginConfig['staticUrl'] = $this->config->appplication->baseUri;
 		foreach($viewAutoAssginConfig as $key => $val){
 			$this->assign($key, $val);
 		}
@@ -29,6 +29,15 @@ class AdminBaseController extends Controller {
 	// set var to template
 	protected function assign($key, $value){
 		$this->view->setVar($key, $value);
+	}
+	// ajax return
+	protected function displayAjax($status = false, $message = '未知错误',$assignData = array()){
+		$ajaxReturn = array(
+			'status'=> $status,
+			'message'=> $message,
+			'data'=>$assignData 
+		);
+		die(json_encode($ajaxReturn));
 	}
 	/**
 	 * redirect other action

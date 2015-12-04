@@ -7,6 +7,9 @@ use Phalcon\Loader;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 use Phalcon\Config;
+use Phalcon\Mvc\Application;
+use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
+use Phalcon\DI;
 
 class Module implements ModuleDefinitionInterface {
 	/**
@@ -19,9 +22,9 @@ class Module implements ModuleDefinitionInterface {
 		
 		$loader->registerNamespaces(array(
 			'Application\Admin\Controllers'=> __DIR__ . '/controllers/',
-			'Application\Admin\Models'=> __DIR__ . '/models/' 
+			'Application\Admin\Models'=> __DIR__ . '/models/',
+			'Application\Admin\Librarys'=> __DIR__ . '/librarys/' 
 		));
-		
 		$loader->register();
 	}
 	
@@ -53,9 +56,12 @@ class Module implements ModuleDefinitionInterface {
          * Setting up the view component
          */
 		$view = $di->get('view');
-		$view->setViewsDir($config->get('application')->viewsDir); 
+		$view->setViewsDir($config->get('application')->viewsDir);
 		$di->set('view', $view);
-
+		// register helper
+		$di->setShared('adminHelper', function (){
+			return new \Application\Admin\Librarys\voltHelper();
+		});
 		/**
          * Database connection is created based in the parameters defined in the configuration file
          */
