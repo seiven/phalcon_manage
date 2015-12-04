@@ -1,10 +1,13 @@
 # phalcon_manage
 a manage system on phalcon
+
 # environment
 - php>=5.4
 - phalcon	2.0.8
 - templateEngine	volt
 - aceAdmin
+
+
 # webtools and clitool
 1. phalcon project projectName
 2. cd project dir
