@@ -158,13 +158,11 @@ var s = {
 			success : function(json) {
 				if (json.status == true) {
 					// 添加成功
-					bootbox.alert(json.message, function(result) {
-						if (json.redirect_url) {
-							top.window.location.href = json.redirect_url;
-						} else {
-							top.window.location.href = '/';
-						}
-					});
+					redirect_url = json.data.redirect_url;
+					if(redirect_url){
+						var pageid = redirect_url.replace(/\//gi,'_');
+						s.loadPageContent('',redirect_url,pageid);
+					}
 				} else {
 					// 失败
 					bootbox.alert(json.message);

@@ -1,85 +1,159 @@
-<div class="row">
-  <div class="col-xs-12">
-    <form method="post" class="form-horizontal" name="{{controller}}_{{action}}_form"
-			id="{{controller}}_{{action}}_form" action="{{url('Admin/users/save/id/'~id)}}">
-      <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right"
-					for="form-field-1">管理角色组</label>
-        <div class="col-sm-9">
-          <select class="chosen-select" name="groupId" data-placeholder="Choose a Country...">
+<style>
+/*添加*/ 
+table {
+	font-size:12px;
+	color:#333333;
+	font-family:"微软雅黑"
+}
+.add_detail_this {
+	margin:15px;
+	border-radius:4px;
+	font-size:12px;
+	padding-bottom:20px;
+	margin-left:0;
+}
+.add-table {
+	width:100%;
+	font-size:12px;
+	border-collapse:collapse;
+}
+.add-table th {
+	text-align:right;
+	padding-right:15px;
+	width:90px;
+}
+.add-table td {
+	padding:10px 0 10px 0;
+	padding-left:10px;
+}
+.add-input-text {
+	width:250px;
+	height:24px;
+	border-radius:3px;
+	border:solid 1px #CCCCCC;
+	font-family:"微软雅黑";
+	padding-left:5px
+}
+.add-input-textarea {
+	width:250px;
+	border:solid 1px #CCC;
+	border-radius:3px;
+	resize:none;
+	height:55px;
+	font-family:"微软雅黑"
+}
+.add-input-select {
+	height:25px;
+	font-family:"微软雅黑";
+	border-radius:3px;
+	padding-left:5px;
+	border:solid 1px #CCC;
+	color:#333333;
+	width:253px
+}
+.rightAreaT {
+	height: 26px;
+	line-height: 26px;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	margin-top:2px;
+	font-size: 13px;
+	color:#000000;
+	margin-left:-5px
+}
+.setRightArr {
+	margin-left: -40px;
+	list-style: none;
+	margin-top: 0;
+	padding-bottom:10px
+}
+.setRightArr li {
+	float: left;
+	width: 210px;
+	margin-right: 5px;
+	height: 28px;
+	line-height: 28px;
+	margin-left: 35px;
+}
+.setRightArr li input {
+	position:relative;
+	top:2px
+}
+.rightAreaT a {
+	font-weight:normal;
+	color:#333333;
+	font-size:12px;
+	text-decoration:none
+}
+</style>
+<div class="add_detail_this">
+  <form method="post" name="{{controller}}_{{action}}_form"
+			id="{{controller}}_{{action}}_form" action="{{url('Admin/Roles/save/gid/'~data.gid)}}" class='form_ajax form-horizontal'>
+    <table class="add-table">
+      <tbody>
+        <tr>
+          <th width="" style=" width:120px">角色所属组：</th>
+          <td width=""><select name="parent_id" class="chosen-select" data-placeholder="选择一个角色分组">
+              <option value="0">顶级权限分组</option>
+              <{foreach from=$list item=cateTree}>
+               {%for item in groupList %}
+                
+              <option value="{{item.gid}}" {%if item.gid == data.parent_id%}selected{%endif%} >{{item.gname}} </option>
+              
+              {%endfor%}
             
-           {% for g in groups%}
-           
-            <option value="{{g.gid}}" {%if user%}{% if model.groupId  == g.id %}selected{%endif%}{%endif%} >{{g.gname}}</option>
-            
-           {%endfor%}
-          
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right"
-					for="form-field-2"> 用户名 </label>
-        {%if model%}
-        <div class="col-sm-9">{{model.username}}</div>
-        {%else%}
-        <div class="col-sm-9">
-          <input type="text" value="{{model.username}}" id="form-field-2"
-						placeholder="" name="username" class="col-xs-10 col-sm-5" />
-          <span
-						class="help-inline col-xs-12 col-sm-7"> </span> </div>
-        {%endif%} </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right"
-					for="form-field-2"> 真实姓名 </label>
-        <div class="col-sm-9">
-          <input type="text" value="{{model.truename}}" id="form-field-2"
-						placeholder="" name="truename" class="col-xs-10 col-sm-5" />
-          <span
-						class="help-inline col-xs-12 col-sm-7"> </span> </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right"
-					for="form-field-2"> 密码 </label>
-        <div class="col-sm-9">
-          <input type="password" id="form-field-2" placeholder=" "
-						name="password" class="col-xs-10 col-sm-5" />
-          <span
-						class="help-inline col-xs-12 col-sm-7"> </span> </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right"
-					for="form-field-2"> 邮箱 </label>
-        <div class="col-sm-9">
-          <input type="text" id="form-field-2" placeholder=" "
-						value="{{model.email}}" name="email" class="col-xs-10 col-sm-5" />
-          <span class="help-inline col-xs-12 col-sm-7"> </span> </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right"
-					for="form-field-2"> 手机号码 </label>
-        <div class="col-sm-9">
-          <input type="text" id="form-field-2" placeholder=" "
-						value="{{model.phone}}" name="phone" class="col-xs-10 col-sm-5" />
-          <span class="help-inline col-xs-12 col-sm-7"> </span> </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right"
-					for="form-field-2"> 状态 </label>
-        <div class="col-sm-9">
-          <label>
-            <input name="status" type="radio" class="ace" {%if model.status  == 1 %}checked="checked"{%endif%} value="1" />
-            <span
-						class="lbl">启用</span> </label>
-          <label>
-            <input name="status" type="radio" class="ace" {%if model.status  == 0 %}checked="checked"{%endif%} value="0" />
-            <span
-						class="lbl">禁用</span> </label>
-        </div>
-      </div>
-    </form>
-  </div>
+            </select></td>
+        </tr>
+        <tr>
+          <th width="" style=" width:120px">角色名称：</th>
+          {%if data%}
+          <td width="">{{data.gname}}</td>
+          {%else%}
+          <td width=""><input type="text" class="add-input-text" name="gname" must="true" value="" />
+            &nbsp;* 描述该角色主要职责,如 文章管理员 等</td>
+          {%endif%} </tr>
+        <tr>
+          <th valign="top" style="padding-top:15px" width="">资源分配：</th>
+          <td width=""> {%for key,rep in rightArray%}
+            <div class="rightAreaT">
+              <label>
+                <input type="checkbox" class="ace"  data-key="{{md5(key)}}"/>
+                <span class="lbl"></span>&nbsp;<strong>{{key}}</strong></label>
+            </div>
+            <ul class="setRightArr" id="{{md5(key)}}">
+              {%for arr in rep%}
+              <li>
+                <label>
+                  <input type="checkbox" class="ace" name="rights[]" value="{{arr.id}}" {%if groupRight and in_array(arr.id,groupRight)%}checked="checked"{%endif%} />
+                  <span class="lbl"></span>&nbsp;<span>{{arr.name}}</span></label>
+              </li>
+              {%endfor%}
+              <div style="clear:both"></div>
+            </ul>
+            {%endfor%} </td>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="text-align:center">
+      <button type="submit" class="btn btn-lg btn-success save_role_btn"> <i class="icon-ok"></i> 提 交 </button>
+    </div>
+  </form>
 </div>
+<script type="text/javascript"> 
+$(function(){ 
+	$('.rightAreaT input[type=checkbox]').on('click' , function(){
+		var that = this;
+		var key = $(this).data('key');
+		$('#'+key).find('input:checkbox').each(function(){
+			this.checked = that.checked;
+			//$(this).closest('tr').toggleClass('selected');
+		});
+	});
+})
+</script> 
 <script type="text/javascript">
 	$(".chosen-select").chosen();
 	$('.chosen-container').each(function() {

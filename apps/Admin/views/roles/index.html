@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1> 角色 <small> <i class="icon-double-angle-right"> &nbsp;</i> {% if adminHelper.checkRight('Admin/Roles/save')%} <a data-title="添加" data-url="{{url('Admin/Roles/save')}}" data-type="form" href="javascript:void(0)" class="open_dialog">添加角色</a> {%endif%} </small> </h1>
+  <h1> 角色 <small> <i class="icon-double-angle-right"> &nbsp;</i> {% if adminHelper.checkRight('Admin/Roles/save')%} <a  href="#"  data-pageid="this" data-navname="this" class="page_btn" data-url="{{url('Admin/Roles/save')}}">添加角色</a> {%endif%} </small> </h1>
 </div>
 <!-- /.page-header -->
 <div class="row">
@@ -23,8 +23,8 @@
             <tr id="{{item.gid}}"  parent="{{item.parent_id}}">
               <td>{{ item.gid }}</td>
               <td>{{ item.gname }}</td>
-              <td> {% if adminHelper.checkRight('Admin/Roles/save')%} <a data-url="{{url('Admin/roles/save/id/'~item.gid)}}" href="javascript:void(0)" class="open_dialog" data-title="编辑分组: {{item.name}}"  data-type="form">编辑</a> {%endif%}
-                {% if adminHelper.checkRight('Admin/Roles/del')%} <a class='delete' href="javascript:void(0)" data-message="确定删除  '{{item.gname}}' ? 删除后改组成员将无法登陆" data-url="{{url('Admin/roles/del/id/'~item.gid)}}" >删除</a> {%endif%} </td>
+              <td> {% if adminHelper.checkRight('Admin/Roles/save')%} <a href="javascript:void(0)" data-pageid="this" data-navname="this" class="page_btn" data-url="{{url('Admin/Roles/save/gid/'~item.gid)}}">编辑</a> {%endif%}
+                {% if adminHelper.checkRight('Admin/Roles/del')%} <a class='delete' href="javascript:void(0)" data-message="确定删除分组  '{{item.gname}}' ? 删除后改组成员将无法登陆" data-url="{{url('Admin/roles/del/id/'~item.gid)}}" >删除</a> {%endif%} </td>
             </tr>
             {% endfor %}
             {% endif %}
@@ -36,7 +36,7 @@
       </div>
       <!-- /span --> 
     </div>
-    <!-- /row -->
+    <!-- /row --> 
     
     {% include "elements/page.html" %} 
     <!-- PAGE CONTENT ENDS --> 

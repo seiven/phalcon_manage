@@ -35,9 +35,9 @@ class RightsController extends AdminBaseController {
 			}else{
 				$rights = new Rights();
 			}
-			if($rights->save($postData) == false) $this->displayAjax(false, join($user->getMessages(), '<br>'));
+			if($rights->save($postData) == false) $this->displayAjax(false, join($rights->getMessages(), '<br>'));
 			$this->displayAjax(true, '', array(
-				'redirect_url'=> $this->url->get('Admin/rights/index') 
+				'redirect_url'=> $this->url->get('Admin/Rights/index') 
 			));
 		}
 		if($id){

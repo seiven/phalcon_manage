@@ -69,6 +69,7 @@ $di->set('volt', function ($view, $di){
 	$compiler = $volt->getCompiler();
 	$compiler->addFunction('md5', 'md5');
 	$compiler->addFunction('replace', 'str_replace');
+	$compiler->addFunction('in_array', 'in_array');
 	return $volt;
 }, true);
 // set config
