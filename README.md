@@ -1,5 +1,5 @@
 # phalcon_manage
-一个基于phlcon(2.0.8)及AceAdmin 的后台管理骨架
+一个基于phalcon(2.0.8)及AceAdmin 的后台管理骨架
 
 
 # 我的开发环境以及用到的库
