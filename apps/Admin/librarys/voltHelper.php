@@ -8,7 +8,7 @@ class voltHelper {
 	 * @param unknown $controller
 	 * @param unknown $action
 	 */
-	function checkRight($controller,$action){
+	function checkRight($uri){
 		return true;
 	}
 }

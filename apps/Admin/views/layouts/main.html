@@ -148,12 +148,12 @@
         <li> <a href="#" class="dropdown-toggle"> <i class="{{topmenu['icon']}}"></i> <span class="menu-text">{{top_menu_name}}</span> <b class="arrow icon-angle-down"></b> </a>
           <ul class="submenu">
             {% for son_menu_name,sonmenu in topmenu['list'] %}
-            <li> <a href="#" data-url="{{sonmenu['url']}}" data-pageid="{{replace('/', '_', sonmenu['url'])}}" data-navname="{{son_menu_name}}" class="page_btn"> <i class="icon-double-angle-right"></i> {{son_menu_name}} </a> </li>
+            <li> <a href="#" data-url="{{sonmenu['url']}}" data-pageid="{{replace('/', '_', sonmenu['url'])|lower}}" data-navname="{{son_menu_name}}" class="page_btn"> <i class="icon-double-angle-right"></i> {{son_menu_name}} </a> </li>
             {%endfor%}
           </ul>
         </li>
         {%else%}
-        <li> <a href="#" data-url="{{topmenu['url']}}" data-pageid="{{replace('/', '_', topmenu['url'])}}" data-navname="{{top_menu_name}}"  class="page_btn"> <i class="icon-text-width"></i> <span class="menu-text"> {{top_menu_name}} </span> </a> </li>
+        <li> <a href="#" data-url="{{topmenu['url']}}" data-pageid="{{replace('/', '_', topmenu['url'])|lower}}" data-navname="{{top_menu_name}}"  class="page_btn"> <i class="icon-text-width"></i> <span class="menu-text"> {{top_menu_name}} </span> </a> </li>
         {%endif%}
         {%endfor%}
       </ul>

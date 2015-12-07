@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form method="post" class="form-horizontal" name="{{controller}}_{{action}}_form"
+			id="{{controller}}_{{action}}_form" action="{{url('Admin/users/save/id/'~id)}}">
+      <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"
+					for="form-field-1">管理角色组</label>
+        <div class="col-sm-9">
+          <select class="chosen-select" name="groupId" data-placeholder="Choose a Country...">
+            
+           {% for g in groups%}
+           
+            <option value="{{g.gid}}" {%if user%}{% if model.groupId  == g.id %}selected{%endif%}{%endif%} >{{g.gname}}</option>
+            
+           {%endfor%}
+          
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 用户名 </label>
+        {%if model%}
+        <div class="col-sm-9">{{model.username}}</div>
+        {%else%}
+        <div class="col-sm-9">
+          <input type="text" value="{{model.username}}" id="form-field-2"
+						placeholder="" name="username" class="col-xs-10 col-sm-5" />
+          <span
+						class="help-inline col-xs-12 col-sm-7"> </span> </div>
+        {%endif%} </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 真实姓名 </label>
+        <div class="col-sm-9">
+          <input type="text" value="{{model.truename}}" id="form-field-2"
+						placeholder="" name="truename" class="col-xs-10 col-sm-5" />
+          <span
+						class="help-inline col-xs-12 col-sm-7"> </span> </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 密码 </label>
+        <div class="col-sm-9">
+          <input type="password" id="form-field-2" placeholder=" "
+						name="password" class="col-xs-10 col-sm-5" />
+          <span
+						class="help-inline col-xs-12 col-sm-7"> </span> </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 邮箱 </label>
+        <div class="col-sm-9">
+          <input type="text" id="form-field-2" placeholder=" "
+						value="{{model.email}}" name="email" class="col-xs-10 col-sm-5" />
+          <span class="help-inline col-xs-12 col-sm-7"> </span> </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 手机号码 </label>
+        <div class="col-sm-9">
+          <input type="text" id="form-field-2" placeholder=" "
+						value="{{model.phone}}" name="phone" class="col-xs-10 col-sm-5" />
+          <span class="help-inline col-xs-12 col-sm-7"> </span> </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"
+					for="form-field-2"> 状态 </label>
+        <div class="col-sm-9">
+          <label>
+            <input name="status" type="radio" class="ace" {%if model.status  == 1 %}checked="checked"{%endif%} value="1" />
+            <span
+						class="lbl">启用</span> </label>
+          <label>
+            <input name="status" type="radio" class="ace" {%if model.status  == 0 %}checked="checked"{%endif%} value="0" />
+            <span
+						class="lbl">禁用</span> </label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+	$(".chosen-select").chosen();
+	$('.chosen-container').each(function() {
+		$(this).find('a:first-child').css('width', '210px');
+		$(this).find('.chosen-drop').css('width', '210px');
+		$(this).find('.chosen-search input').css('width', '200px');
+	});
+</script> 

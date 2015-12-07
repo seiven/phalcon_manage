@@ -51,6 +51,7 @@ class Module implements ModuleDefinitionInterface {
 				$config = $override;
 			}
 		}
+		$di->setShared('config', $config);
 		
 		/**
          * Setting up the view component

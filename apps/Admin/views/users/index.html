@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1> 管理员 <small> <i class="icon-double-angle-right"> &nbsp;</i> {% if adminHelper.checkRight('Users','add')%} <a data-title="添加管理员" data-url="{{url('Admin/Users/save')}}" data-type="form" href="javascript:void(0)" class="open_dialog">创建管理员</a> {%endif%} </small> </h1>
+  <h1> 管理员 <small> <i class="icon-double-angle-right"> &nbsp;</i> {% if adminHelper.checkRight('Admin/Users/save')%} <a data-title="添加管理员" data-url="{{url('Admin/Users/save')}}" data-type="form" href="javascript:void(0)" class="open_dialog">创建管理员</a> {%endif%} </small> </h1>
 </div>
 <!-- /.page-header -->
 <div class="row">
@@ -46,14 +46,8 @@
       <!-- /span --> 
     </div>
     <!-- /row -->
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="dataTables_info" id="sample-table-2_info">共{{page.total_items}}条</div>
-      </div>
-      <div class="col-sm-6">
-        <div class="dataTables_paginate paging_bootstrap"> {% include "elements/page.html" %} </div>
-      </div>
-    </div>
+    
+    {% include "elements/page.html" %} 
     <!-- PAGE CONTENT ENDS --> 
   </div>
   <!-- /.col --> 

@@ -1,13 +1,24 @@
-<ul class="pagination">
-  <li><a data-url="{{url('Admin/users/index/page/1')}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">首页</a></li>
-  <li><a data-url="{{url('Admin/users/index/page/'~page.before)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">上一页</a></li>
-  {%for p in 1..page.total_pages%}
-  {%if p == page.current%}
-  <li class="active"><a href="#">{{p}}</a></li>
-  {%else%}
-  <li><a data-url="{{url('Admin/users/index/page/'~p)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">{{p}}</a></li>
-  {%endif%}
-  {%endfor%}
-  <li><a data-url="{{url('Admin/users/index/page/'~page.next)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">下一页</a></li>
-  <li><a data-url="{{url('Admin/users/index/page/'~page.last)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">尾页</a></li>
-</ul>
+{%if page.total_pages > 1%}
+<div class="row">
+  <div class="col-sm-6">
+    <div class="dataTables_info" id="sample-table-2_info">共{{page.total_items}}条</div>
+  </div>
+  <div class="col-sm-6">
+    <div class="dataTables_paginate paging_bootstrap">
+      <ul class="pagination">
+        <li><a data-url="{{url('Admin/users/index/page/1')}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">首页</a></li>
+        <li><a data-url="{{url('Admin/users/index/page/'~page.before)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">上一页</a></li>
+        {%for p in (page.current>5?page.current-5:1)..((page.current+5)>page.total_pages?page.total_pages:page.current+5)%}
+        {%if p == page.current%}
+        <li class="active"><a href="#">{{p}}</a></li>
+        {%else%}
+        <li><a data-url="{{url('Admin/users/index/page/'~p)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">{{p}}</a></li>
+        {%endif%}
+        {%endfor%}
+        <li><a data-url="{{url('Admin/users/index/page/'~page.next)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">下一页</a></li>
+        <li><a data-url="{{url('Admin/users/index/page/'~page.last)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">尾页</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{%endif%}

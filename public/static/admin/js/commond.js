@@ -16,11 +16,7 @@ var s = {
 				}, function(json) {
 					if (json.status == true) {
 						// 删除成功
-						if(json.callback){
-							eval("json.callback("+ json +")")
-						}else{
-							location.reload();
-						}
+						$(o).parents('tr').remove();
 					} else {
 						// 执行失败,提示信息
 						bootbox.alert(json.message);
@@ -195,6 +191,7 @@ var s = {
 	},
 	loadPageContent:function(title,url,pageid){
 		// load html
+		pageid = pageid.toLowerCase();
 		$.ajax({
 			url: url,
 			context: $('.page-content'),
@@ -266,7 +263,7 @@ var s = {
 		$('.page_btn').on('click',function(){
 			var t = $(this);
 			var url = t.data('url');
-			pageid = t.data('pageid');
+			pageid = t.data('pageid').toLowerCase();
 			title = t.data('navname');
 			if(pageid == 'this'){
 				if(t.parents('.main_target').length > 0){

@@ -90,11 +90,18 @@ class UsersController extends AdminBaseController {
 			}
 			if($user->save($postData) == false) $this->displayAjax(false, join($user->getMessages(), '<br>'));
 			$this->displayAjax(true, '', array(
-				'redirect_url'=> $this->url->get('Admin/Users/index')
+				'redirect_url'=> $this->url->get('Admin/Users/index') 
 			));
 		}
 		$this->assign('id', $id);
 		if(!$isNew) $this->assign('model', Users::findFirst($id));
 		$this->assign('groups', Groups::find());
+	}
+	public function delAction($id = null){
+		if($id){
+			$roles = Users::findFirst($id);
+			$roles->delete();
+		}
+		$this->displayAjax(true, '删除成功');
 	}
 }
