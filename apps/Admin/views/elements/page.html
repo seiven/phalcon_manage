@@ -1,0 +1,13 @@
+<ul class="pagination">
+  <li><a data-url="{{url('Admin/users/index/page/1')}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">首页</a></li>
+  <li><a data-url="{{url('Admin/users/index/page/'~page.before)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">上一页</a></li>
+  {%for p in 1..page.total_pages%}
+  {%if p == page.current%}
+  <li class="active"><a href="#">{{p}}</a></li>
+  {%else%}
+  <li><a data-url="{{url('Admin/users/index/page/'~p)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">{{p}}</a></li>
+  {%endif%}
+  {%endfor%}
+  <li><a data-url="{{url('Admin/users/index/page/'~page.next)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">下一页</a></li>
+  <li><a data-url="{{url('Admin/users/index/page/'~page.last)}}" href="#"  data-pageid="this" data-navname="this" class="page_btn">尾页</a></li>
+</ul>

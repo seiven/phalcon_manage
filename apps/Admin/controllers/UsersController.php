@@ -17,13 +17,12 @@ class UsersController extends AdminBaseController {
 	/**
 	 * user list
 	 */
-	public function indexAction(){
-		$page = $this->request->getQuery('page', 'int', 1);
+	public function indexAction($page = 1){
 		$parameters["order"] = "id";
 		$users = Users::find($parameters);
 		$paginator = new Model(array(
 			'data'=> $users,
-			'limit'=> 20,
+			'limit'=> 1,
 			'page'=> $page 
 		));
 		$this->view->page = $paginator->getPaginate();

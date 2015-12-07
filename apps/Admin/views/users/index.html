@@ -22,6 +22,7 @@
               </tr>
             </thead>
             <tbody>
+            
             {% if page.items is defined %}
             {% for user in page.items %}
             <tr>
@@ -37,13 +38,22 @@
             {% endfor %}
             {% endif %}
               </tbody>
+            
           </table>
         </div>
         <!-- /.table-responsive --> 
       </div>
       <!-- /span --> 
     </div>
-    <!-- /row --> 
+    <!-- /row -->
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="dataTables_info" id="sample-table-2_info">{{page.total_items}}</div>
+      </div>
+      <div class="col-sm-6">
+        <div class="dataTables_paginate paging_bootstrap"> {% include "elements/page.html" %} </div>
+      </div>
+    </div>
     <!-- PAGE CONTENT ENDS --> 
   </div>
   <!-- /.col --> 

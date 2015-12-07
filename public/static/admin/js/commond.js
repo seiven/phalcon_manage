@@ -195,25 +195,45 @@ var s = {
 	},
 	publicInit:function(){
 		// 删除
+		$(".delete").off("click"); 
 		$('.delete').on('click', function() {
 			// 发起ajax请求
 			s.del($(this));
 		})
 		// 打开dialog
+		$(".open_dialog").off("click"); 
 		$('.open_dialog').on('click', function() {
 			s.dialog($(this));
 		});
 		// 确认提交
 		$('.form_ajax').submit(function() {
 			return s.submit($(this));
-		})
+		});
+		s.initPageBind();
 	},
 	initPageBind:function(){
-			// ajax 获取网页
+		// ajax 获取网页
+		$(".page_btn").off("click"); 
 		$('.page_btn').on('click',function(){
 			var t = $(this);
 			var url = t.data('url');
 			var target = t.data('target') | '.main_target';
+			
+			pageid = t.data('pageid');
+			pageName = t.data('navname');
+			if(pageid == 'this'){
+				if(t.parents('.main_target').length > 0){
+					// 查找到	
+					pageid = t.parents('.main_target').attr('id');
+					pageName =$('#nav_'+pageid).html();
+					$('#'+pageid).remove();
+					$('#nav_'+pageid).remove();
+				}else{
+					// 没找到
+					alert('page id config error');
+					return;	
+				}
+			}
 			// load html
 			$.ajax({
 				url: url,
@@ -227,18 +247,17 @@ var s = {
 				success:function(data){
 					// 查询之前是否含有
 					//$('.main_target').hide();
-					if($('#'+t.data('pageid')).length > 0){
+					if($('#'+pageid).length > 0){
 						// 存在	
 						var html = $('#'+t.data('pageid'));
-						$(html).attr('id',t.data('pageid'));
 						$(html).html(data)
 					}else{
 						// 不存在
 						// 添加导航
-						$('<li> <a data-toggle="tab" href="#'+ t.data('pageid') +'"> '+ t.data('navname') +' </a></li>').appendTo($('#pageNavs'));
+						$('<li> <a data-toggle="tab" href="#'+ pageid +'" id="nav_'+ pageid +'"> '+ pageName +' </a></li>').appendTo($('#pageNavs'));
 						// 让其他的隐藏
 						var html = $('<div class="main_target tab-pane in"></div>')
-						$(html).attr('id',t.data('pageid'));
+						$(html).attr('id',pageid);
 						$(html).html(data)
 						$(html).appendTo(this)
 					}
@@ -248,11 +267,11 @@ var s = {
 					// 显示当前
 					$('#pageNavs a').each(function(){
 						var ele =  $(this).attr('href');
-						if(ele == '#'+t.data('pageid')){
+						if(ele == '#'+pageid){
 							$(this).parent().addClass('active');
 						}
 					});
-					$('#'+t.data('pageid')).addClass('active');
+					$('#'+pageid).addClass('active');
 					s.close_load();	
 					// 重新绑定事件
 					s.publicInit();
@@ -286,6 +305,4 @@ var s = {
 
 $(function() {
 	s.publicInit();
-	// select或控件事件变化
-	s.initPageBind();
 })

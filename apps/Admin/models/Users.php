@@ -6,7 +6,6 @@ use Phalcon\Mvc\Model;
 
 class Users extends BaseModel {
 	public $tableName = 'admin_user';
-	public function getUserById(){}
 	
 	/**
 	 * get user by username
@@ -19,5 +18,9 @@ class Users extends BaseModel {
 				'username'=> $username 
 			) 
 		));
+	}
+	static function  beforeUpdate()
+	{
+		
 	}
 }
