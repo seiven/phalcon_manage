@@ -62,16 +62,6 @@ class Module implements ModuleDefinitionInterface {
 		$di->setShared('adminHelper', function (){
 			return new \Application\Admin\Librarys\voltHelper();
 		});
-		/**
-         * Database connection is created based in the parameters defined in the configuration file
-         */
-		$di['db'] = function () use($config){
-			$config = $config->database->toArray();
-			$dbAdapter = '\Phalcon\Db\Adapter\Pdo\\' . $config['adapter'];
-			unset($config['adapter']);
-			
-			return new $dbAdapter($config);
-		};
 		// add default namespace
 		$dispatcher = $di->get('dispatcher');
 		$dispatcher->setDefaultNamespace("Application\Admin\Controllers");

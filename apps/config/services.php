@@ -7,6 +7,8 @@ use Phalcon\Mvc\Model\Metadata\Memory as MetaData;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Events\Manager as EventsManager;
+use Phalcon\DI;
+use Phalcon\Mvc\Application;
 
 /**
  * The URL component is used to generate all kind of urls in the application
@@ -21,9 +23,16 @@ $di->set('url', function () use($config){
  */
 $di->set('db', function () use($config){
 	$config = $config->get('database')->toArray();
-	$dbClass = 'Phalcon\Db\Adapter\Pdo\\' . $config['adapter'];
+	$dbAdapter = '\Phalcon\Db\Adapter\Pdo\\' . $config['adapter'];
 	unset($config['adapter']);
-	$connection = new $dbClass($config);
+	$connection = new $dbAdapter($config);
+	// 监听数据库
+	$eventsManager = DI::getDefault()->getShared('eventsManager');
+	$eventsManager->attach('db:beforeQuery', function ($event, $connection){
+		$logger = DI::getDefault()->getShared('logger');
+		$logger->log($connection->getSQLStatement(), \Phalcon\Logger::INFO);
+	});
+	$connection->setEventsManager($eventsManager);
 	return $connection;
 });
 
@@ -59,6 +68,7 @@ $di->set('volt', function ($view, $di){
 	// register function
 	$compiler = $volt->getCompiler();
 	$compiler->addFunction('md5', 'md5');
+	$compiler->addFunction('replace', 'str_replace');
 	return $volt;
 }, true);
 // set config

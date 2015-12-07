@@ -8,6 +8,7 @@ namespace Application\Admin\Controllers;
 use Application\Admin\Models\Users;
 use Phalcon\Paginator\Adapter\Model;
 use Application\Admin\Models\Groups;
+use Phalcon\Mvc\Url;
 
 class UsersController extends AdminBaseController {
 	public $layout = 'main';
@@ -18,11 +19,13 @@ class UsersController extends AdminBaseController {
 	 * user list
 	 */
 	public function indexAction($page = 1){
-		$parameters["order"] = "id";
+		$parameters["order"] = "id desc";
+		// $parameters['conditions'] = 'username = :username:';
+		// $parameters['bind'] = array('username'=>'seiven');
 		$users = Users::find($parameters);
 		$paginator = new Model(array(
 			'data'=> $users,
-			'limit'=> 1,
+			'limit'=> 20,
 			'page'=> $page 
 		));
 		$this->view->page = $paginator->getPaginate();
@@ -75,10 +78,20 @@ class UsersController extends AdminBaseController {
 			}else{
 				// 更新
 				$user = Users::findFirst($id);
+				unset($postData['username']);
+				if($postData['password']){
+					// 新增无密码
+					$postData['salt'] = rand(100000, 999999);
+					$postData['password'] = md5(md5($postData['password']) . $postData['salt']);
+				}else{
+					unset($postData['password']);
+				}
 				if(!$user) $this->displayAjax(false, '您要更新的账户不存在!');
 			}
 			if($user->save($postData) == false) $this->displayAjax(false, join($user->getMessages(), '<br>'));
-			$this->displayAjax(true);
+			$this->displayAjax(true, '', array(
+				'redirect_url'=> $this->url->get('Admin/Users/index')
+			));
 		}
 		$this->assign('id', $id);
 		if(!$isNew) $this->assign('model', Users::findFirst($id));

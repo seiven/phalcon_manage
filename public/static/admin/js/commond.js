@@ -118,10 +118,10 @@ var s = {
 			success : function(json) {
 				if (json.status == true) {
 					// 添加成功
-					if (json.redirect_url) {
-						top.window.location.href = json.redirect_url;
-					} else {
-						bootbox.hideAll(); 
+					redirect_url = json.data.redirect_url;
+					if(redirect_url){
+						var pageid = redirect_url.replace(/\//gi,'_');
+						s.loadPageContent('',redirect_url,pageid);
 					}
 				} else {
 					// 失败
@@ -193,6 +193,55 @@ var s = {
 	close_load:function(){
 		$('#screen').hide();
 	},
+	loadPageContent:function(title,url,pageid){
+		// load html
+		$.ajax({
+			url: url,
+			context: $('.page-content'),
+			data:{},
+			dataType: 'html',
+			error:function(data,e){
+				console.log('有错误'+e)	
+				s.close_load();	
+			},
+			success:function(data){
+				// 查询之前是否含有
+				//$('.main_target').hide();
+				if($('#'+pageid).length > 0){
+					// 存在	
+					var html = $('#'+pageid);
+					$(html).html(data)
+				}else{
+					// 不存在
+					// 添加导航
+					$('<li> <a data-toggle="tab" href="#'+ pageid +'" id="nav_'+ pageid +'" data-url="'+ url +'"> '+ title +' </a></li>').appendTo($('#pageNavs'));
+					// 让其他的隐藏
+					var html = $('<div class="main_target tab-pane in"></div>')
+					$(html).attr('id',pageid);
+					$(html).html(data)
+					$(html).appendTo(this)
+				}
+				// 隐藏所有
+				$('.main_target').removeClass('active');
+				$('#pageNavs li').removeClass('active');
+				// 显示当前
+				$('#pageNavs a').each(function(){
+					var ele =  $(this).attr('href');
+					if(ele == '#'+pageid){
+						$(this).parent().addClass('active');
+					}
+				});
+				$('#'+pageid).addClass('active');
+				s.close_load();	
+				// 重新绑定事件
+				s.publicInit();
+			},
+			beforeSend:function(){
+				s.create_load();	
+			}
+		});
+	},
+	// 页面加载时
 	publicInit:function(){
 		// 删除
 		$(".delete").off("click"); 
@@ -217,15 +266,13 @@ var s = {
 		$('.page_btn').on('click',function(){
 			var t = $(this);
 			var url = t.data('url');
-			var target = t.data('target') | '.main_target';
-			
 			pageid = t.data('pageid');
-			pageName = t.data('navname');
+			title = t.data('navname');
 			if(pageid == 'this'){
 				if(t.parents('.main_target').length > 0){
 					// 查找到	
 					pageid = t.parents('.main_target').attr('id');
-					pageName =$('#nav_'+pageid).html();
+					title =$('#nav_'+pageid).html();
 					$('#'+pageid).remove();
 					$('#nav_'+pageid).remove();
 				}else{
@@ -234,52 +281,7 @@ var s = {
 					return;	
 				}
 			}
-			// load html
-			$.ajax({
-				url: url,
-				context: $('.page-content'),
-				data:{},
-				dataType: 'html',
-				error:function(data,e){
-					console.log('有错误'+e)	
-					s.close_load();	
-				},
-				success:function(data){
-					// 查询之前是否含有
-					//$('.main_target').hide();
-					if($('#'+pageid).length > 0){
-						// 存在	
-						var html = $('#'+t.data('pageid'));
-						$(html).html(data)
-					}else{
-						// 不存在
-						// 添加导航
-						$('<li> <a data-toggle="tab" href="#'+ pageid +'" id="nav_'+ pageid +'"> '+ pageName +' </a></li>').appendTo($('#pageNavs'));
-						// 让其他的隐藏
-						var html = $('<div class="main_target tab-pane in"></div>')
-						$(html).attr('id',pageid);
-						$(html).html(data)
-						$(html).appendTo(this)
-					}
-					// 隐藏所有
-					$('.main_target').removeClass('active');
-					$('#pageNavs li').removeClass('active');
-					// 显示当前
-					$('#pageNavs a').each(function(){
-						var ele =  $(this).attr('href');
-						if(ele == '#'+pageid){
-							$(this).parent().addClass('active');
-						}
-					});
-					$('#'+pageid).addClass('active');
-					s.close_load();	
-					// 重新绑定事件
-					s.publicInit();
-				},
-				beforeSend:function(){
-					s.create_load();	
-				}
-			});
+			s.loadPageContent(title,url,pageid);
 			// create html 
 			return false;
 		});

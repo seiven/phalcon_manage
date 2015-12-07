@@ -60,17 +60,6 @@ class Module implements ModuleDefinitionInterface
 		$view->setViewsDir($config->get('application')->viewsDir); 
 		$di->set('view', $view);
 
-        /**
-         * Database connection is created based in the parameters defined in the configuration file
-         */
-        $di['db'] = function () use ($config) {
-            $config = $config->database->toArray();
-
-            $dbAdapter = '\Phalcon\Db\Adapter\Pdo\\' . $config['adapter'];
-            unset($config['adapter']);
-
-            return new $dbAdapter($config);
-        };
 		// add default namespace
 		$dispatcher = $di->get('dispatcher');
 		$dispatcher->setDefaultNamespace("Application\Frontend\Controllers");

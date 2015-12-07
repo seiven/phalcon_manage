@@ -1,9 +1,9 @@
 <?php
 use Phalcon\Mvc\Application;
-use Phalcon\Config\Adapter\Ini as ConfigIni;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 use Phalcon\Events\Manager as EventManger;
+use Phalcon\DI;
 /**
  * Read the configuration
  */
@@ -13,14 +13,22 @@ $config = require __DIR__ . '/config/config.php';
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
  */
 $di = new FactoryDefault();
+$application = new Application($di);
 
 /**
  * We register the events manager
  */
-$di->set('dispatcher', function () use($di){
+$di->setShared('eventsManager', function (){
 	// 创建一个事件管理
-	$eventsManager = new EventManger();
-	
+	return new EventManger();
+});
+// 日志
+$di->setShared('logger', function (){
+	return new \Phalcon\Logger\Adapter\File(__DIR__ . '/logs/' . date('Ymd') . '.log');
+});
+$di->set('dispatcher', function () use($di){
+	$dispatcher = new MvcDispatcher();
+	$eventsManager = $di->getShared('eventsManager');
 	// 附上一个侦听者
 	$eventsManager->attach("dispatch:beforeDispatchLoop", function ($event, $dispatcher){
 		
@@ -33,12 +41,9 @@ $di->set('dispatcher', function () use($di){
 				$keyParams[$params[$number - 1]] = $value;
 			}
 		}
-		
 		// 重写参数
 		$dispatcher->setParams($keyParams);
 	});
-	
-	$dispatcher = new MvcDispatcher();
 	$dispatcher->setEventsManager($eventsManager);
 	return $dispatcher;
 });
@@ -51,8 +56,6 @@ require __DIR__ . '/config/loader.php';
  * Load application services
  */
 require __DIR__ . '/config/services.php';
-
-$application = new Application($di);
 
 // register moudles
 $modules = require __DIR__ . '/config/modules.php';
