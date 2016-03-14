@@ -29,12 +29,16 @@ class LoginController extends AdminBaseController {
 						// allow login
 						$this->session->set('adminAuth', serialize($user));
 						return $this->response->redirect('/Admin');
+					}else{
+						$this->assign('errorMessage', '您的账户被锁定');
 					}
 				}else{
 					// password fail
+					$this->assign('errorMessage', '您的密码错误');
 				}
 			}else{
 				// not fond this account
+				$this->assign('errorMessage', '您的账户未找到');
 			}
 		}
 	}

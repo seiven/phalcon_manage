@@ -45,9 +45,9 @@
 								class="login-box visible widget-box no-border">
               <div class="widget-body">
                 <div class="widget-main">
-                  <h4 class="header blue lighter bigger"> <i class="icon-coffee green"></i> 请输入您的账户密码信息 </h4>
+                  <h4 class="header blue lighter bigger"> <i class="icon-coffee green"></i> 请输入您的账户密码信息{{flash.output()}}</h4>
                   <div class="space-6"></div> 
-                  <form method="post" action="{{url('/Admin/login')}}">
+                  <form method="post" action="{{url('/Admin/Login')}}">
                     <fieldset>
                       <label class="block clearfix"> <span
 													class="block input-icon input-icon-right">
@@ -72,6 +72,7 @@
                       </div>
                       <div class="space-4"></div>
                     </fieldset>
+                    <div>{{errorMessage}}</div>
                   </form>
                 </div>
                 <!-- /widget-main --> 

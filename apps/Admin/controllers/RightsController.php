@@ -3,6 +3,7 @@
 namespace Application\Admin\Controllers;
 
 use Application\Admin\Models\Rights;
+use Phalcon\DI;
 
 class RightsController extends AdminBaseController {
 	public $layout = 'main';
